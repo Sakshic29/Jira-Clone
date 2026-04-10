@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useCallback } from "react";
+import { createContext, useContext, useReducer, useCallback, useState } from "react";
 import { INITIAL_TASKS, USERS } from "../data/mockData";
 
 const TaskContext = createContext(null);
@@ -116,9 +116,14 @@ export function TaskProvider({ children }) {
   }, []);
 
   // derived helpers
+  const [filterUserId, setFilterUserId] = useState(null);
+
   const getTasksByStatus = useCallback(
-    (status) => state.tasks.filter((t) => t.status === status),
-    [state.tasks]
+    (status) =>
+      state.tasks
+        .filter((t) => t.status === status)
+        .filter((t) => (filterUserId ? t.assigneeId === filterUserId : true)),
+    [state.tasks, filterUserId]
   );
 
   const getUserById = useCallback(
@@ -135,7 +140,7 @@ export function TaskProvider({ children }) {
   return deadlineDate < today;
 }, []);
 
-  const value = {
+   const value = {
     tasks:          state.tasks,
     users:          state.users,
     addTask,
@@ -146,6 +151,8 @@ export function TaskProvider({ children }) {
     getTasksByStatus,
     getUserById,
     isOverdue,
+    filterUserId,
+    setFilterUserId,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

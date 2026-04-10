@@ -29,6 +29,7 @@ A modern, fully interactive Kanban board built with React. Supports drag-and-dro
 - **Responsive Layout** — single column on mobile, 3-column grid on desktop
 - **Form Validation** — title, assignee, and deadline are required with inline error messages
 - **Drag Overlay** — ghost card with slight rotation follows cursor while dragging
+- **Assignee Filter** — click any team avatar in the header to filter tasks by that person across all columns; click again to clear the filter
 
 ---
 
@@ -46,6 +47,8 @@ A modern, fully interactive Kanban board built with React. Supports drag-and-dro
 ---
 
 ## Project Structure
+
+```
 src/
 ├── main.jsx                  # App entry point, wraps with TaskProvider
 ├── App.jsx                   # Root component, manages modal open/close state
@@ -61,15 +64,14 @@ src/
 │   └── useTasks.js           # Re-exports useTasks hook for cleaner imports
 │
 └── components/
-├── Header.jsx             # Top navbar with logo, team avatars, create button
-├── KanbanBoard.jsx        # DndContext wrapper, 3-column grid, DragOverlay
-├── KanbanColumn.jsx       # Droppable column with SortableContext and empty state
-├── TaskCard.jsx           # Sortable card with animations, edit/delete actions
-├── TaskModal.jsx          # Create and edit modal with form validation
-├── DeleteDialog.jsx       # Confirmation dialog for task deletion
-└── UserAvatar.jsx         # Reusable colored avatar component with optional name
-
----
+    ├── Header.jsx            # Top navbar with logo, team avatars, create button
+    ├── KanbanBoard.jsx       # DndContext wrapper, 3-column grid, DragOverlay
+    ├── KanbanColumn.jsx      # Droppable column with SortableContext and empty state
+    ├── TaskCard.jsx          # Sortable card with animations, edit/delete actions
+    ├── TaskModal.jsx         # Create and edit modal with form validation
+    ├── DeleteDialog.jsx      # Confirmation dialog for task deletion
+    └── UserAvatar.jsx        # Reusable avatar component with optional name
+```
 
 ## Getting Started
 
@@ -125,6 +127,8 @@ Global state is handled with React's built-in `useReducer` inside a `TaskContext
 | `getTasksByStatus(status)` | Returns filtered tasks for a given column |
 | `getUserById(id)` | Looks up a user object by ID |
 | `isOverdue(deadline)` | Returns true if deadline is before today (timezone-safe) |
+| `filterUserId` | Currently active assignee filter (null = show all) |
+| `setFilterUserId(id)` | Sets or clears the assignee filter |
 
 ---
 
@@ -172,6 +176,7 @@ Your live URL will be ready in about 60 seconds.
 | Micro-interactions and hover effects | Done |
 | React Hooks and Context API | Done |
 | Tailwind CSS | Done |
+| Assignee filter by avatar click | Done |
 
 ---
 

@@ -2,7 +2,11 @@ import { useTasks } from "../context/TaskContext";
 import UserAvatar from "./UserAvatar";
 
 export default function Header({ onCreateTask }) {
-  const { users } = useTasks();
+  const { users, filterUserId, setFilterUserId } = useTasks();
+
+  function handleAvatarClick(userId) {
+    setFilterUserId((prev) => (prev === userId ? null : userId));
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-0 flex items-center justify-between h-16 shrink-0">
@@ -37,17 +41,26 @@ export default function Header({ onCreateTask }) {
           <span className="text-xs text-gray-400 mr-2">Team</span>
           <div className="flex -space-x-2">
             {users.map((user) => (
-  <div key={user.id} className="border-2 border-white rounded-full">
-    <UserAvatar user={user} size="sm" />
-  </div>
-))}
+              <div
+                key={user.id}
+                onClick={() => handleAvatarClick(user.id)}
+                title={user.name}
+                className={`border-2 border-white rounded-full cursor-pointer transition-all duration-200
+                  ${filterUserId === user.id
+                    ? "ring-2 ring-indigo-500 ring-offset-1 scale-110 z-10"
+                    : "opacity-70 hover:opacity-100 hover:scale-105"
+                  }`}
+              >
+                <UserAvatar user={user} size="sm" />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* create task button */}
         <button
           onClick={onCreateTask}
-          className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150"
+          className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150 cursor-pointer"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 1v12M1 7h12" stroke="white" strokeWidth="2" strokeLinecap="round" />

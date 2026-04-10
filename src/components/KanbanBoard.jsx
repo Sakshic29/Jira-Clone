@@ -41,7 +41,7 @@ const COLUMNS = [
 ];
 
 export default function KanbanBoard({ onEditTask }) {
-  const { tasks, moveTask, reorderTask, getTasksByStatus } = useTasks();
+  const { tasks, moveTask, reorderTask, getTasksByStatus, filterUserId, setFilterUserId } = useTasks();
   const [activeTask, setActiveTask] = useState(null);
 
   const sensors = useSensors(
@@ -111,6 +111,15 @@ export default function KanbanBoard({ onEditTask }) {
           <p className="text-sm text-gray-400 mt-0.5">
             {tasks.length} tasks across {COLUMNS.length} stages
           </p>
+          {filterUserId && (
+            <button
+              onClick={() => setFilterUserId(null)}
+              className="mt-1 text-xs text-indigo-500 hover:text-red-400 font-medium flex items-center gap-1 transition-colors"
+            >
+              <span>Filtered by assignee</span>
+              <span className="text-gray-400">✕ Clear</span>
+            </button>
+          )}
         </div>
         <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500">
           <span className="flex items-center gap-1.5">

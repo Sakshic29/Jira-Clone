@@ -39,7 +39,7 @@ style={{ borderStyle: "dashed" }}
           strategy={verticalListSortingStrategy}
         >
           <div className="flex flex-col gap-3">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="sync">
               {tasks.map((task) => (
                 <TaskCard
                   key={task.id}

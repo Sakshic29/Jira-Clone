@@ -75,7 +75,6 @@ function formatDate(dateStr) {
 export default function TaskCard({ task, onEditTask, isOverlay = false }) {
   const { getUserById, isOverdue, deleteTask } = useTasks();
   const [showDelete, setShowDelete] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const assignee = getUserById(task.assigneeId);
   const overdue = isOverdue(task.deadline);
@@ -115,14 +114,12 @@ export default function TaskCard({ task, onEditTask, isOverlay = false }) {
       <motion.div
         ref={isOverlay ? undefined : setNodeRef}
         style={isOverlay ? {} : style}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: isDragging ? 0.3 : 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.15 } }}
+        initial={false}
+animate={{ opacity: isDragging ? 0.3 : 1, y: 0 }}
+exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.15 } }}
         whileHover={{}}
         whileTap={{}}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
         className={`
           group relative bg-white rounded-xl border border-gray-100
           shadow-sm hover:shadow-md hover:border-indigo-100
@@ -158,7 +155,7 @@ export default function TaskCard({ task, onEditTask, isOverlay = false }) {
 
             {/* action buttons — visible on hover */}
             <AnimatePresence>
-              {(isHovered || isOverlay) && !isDragging && (
+              {!isDragging && (
                 <motion.div
                   initial={{ opacity: 0, x: 6 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -169,14 +166,14 @@ export default function TaskCard({ task, onEditTask, isOverlay = false }) {
                 >
                   <button
                     onClick={handleEditClick}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                    className="p-1.5 rounded-lg text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors cursor-pointer"
                     title="Edit task"
                   >
                     <EditIcon />
                   </button>
                   <button
                     onClick={handleDeleteClick}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                    className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
                     title="Delete task"
                   >
                     <TrashIcon />
