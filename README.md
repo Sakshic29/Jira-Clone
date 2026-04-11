@@ -12,7 +12,14 @@ A modern, fully interactive Kanban board built with React. Supports drag-and-dro
 
 ## Screenshots
 
-> Add screenshots or a demo GIF here after deployment
+### Kanban Board
+![Kanban Board](Screenshots/board.png)
+
+### Create Task Modal
+![Create Task](Screenshots/create-task.png)
+
+### Mobile View
+![Mobile View](Screenshots/mobile.png)
 
 ---
 
@@ -84,7 +91,7 @@ src/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/jira-clone.git
+git clone https://github.com/Sakshic29/jira-clone.git
 cd jira-clone
 
 # 2. Install dependencies
