@@ -6,7 +6,7 @@ A modern, fully interactive Kanban board built with React. Supports drag-and-dro
 
 ## Live Demo
 
-> Deploy link here (add after Vercel deployment)
+[Click here to view the app](https://jira-clone-gules.vercel.app)
 
 ---
 
