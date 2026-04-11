@@ -56,28 +56,39 @@ A modern, fully interactive Kanban board built with React. Supports drag-and-dro
 ## Project Structure
 
 ```
-src/
-├── main.jsx                  # App entry point, wraps with TaskProvider
-├── App.jsx                   # Root component, manages modal open/close state
-├── index.css                 # Tailwind CSS import
-│
-├── data/
-│   └── mockData.js           # Mock users, task statuses, and initial task data
-│
-├── context/
-│   └── TaskContext.jsx       # Global state — useReducer, all actions, derived helpers
-│
-├── hooks/
-│   └── useTasks.js           # Re-exports useTasks hook for cleaner imports
-│
-└── components/
-    ├── Header.jsx            # Top navbar with logo, team avatars, create button
-    ├── KanbanBoard.jsx       # DndContext wrapper, 3-column grid, DragOverlay
-    ├── KanbanColumn.jsx      # Droppable column with SortableContext and empty state
-    ├── TaskCard.jsx          # Sortable card with animations, edit/delete actions
-    ├── TaskModal.jsx         # Create and edit modal with form validation
-    ├── DeleteDialog.jsx      # Confirmation dialog for task deletion
-    └── UserAvatar.jsx        # Reusable avatar component with optional name
+jira-clone/
+├── Screenshots/
+│   ├── board.png
+│   ├── create-task.png
+│   └── mobile.png
+├── src/
+│   ├── components/
+│   │   ├── DeleteDialog.jsx
+│   │   ├── Header.jsx
+│   │   ├── KanbanBoard.jsx
+│   │   ├── KanbanColumn.jsx
+│   │   ├── TaskCard.jsx
+│   │   ├── TaskModal.jsx
+│   │   └── UserAvatar.jsx
+│   ├── context/
+│   │   └── TaskContext.jsx
+│   ├── data/
+│   │   └── mockData.js
+│   ├── hooks/
+│   │   └── useTasks.js
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+└── vite.config.js
 ```
 
 ## Getting Started
